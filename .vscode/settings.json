@@ -1,0 +1,12 @@
+{
+  "cSpell.words": [
+    "es",
+    "esnext",
+    "ezeed",
+    "ghostwhite",
+    "interop",
+    "module"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.formatOnSave": true
+}
