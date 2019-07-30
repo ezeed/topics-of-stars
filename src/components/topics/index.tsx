@@ -1,10 +1,11 @@
-
-import React, { useMemo, Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 
 import TopicList from "../topics-list";
 import TopicFilters from "../topics-filters";
+import ReposList from "../repos-list";
+import { getTopicsList, getTopicsByKeyword, getRepoByTopic } from "./utils";
 
 export const GET_GITHUB_INFO = gql`
     query GET_GITHUB_INFO($login: String!, $first: Int){
@@ -13,6 +14,7 @@ export const GET_GITHUB_INFO = gql`
         totalCount,
         nodes {
           name,
+          description,
           homepageUrl,
           url,
           languages(first:100) {
@@ -37,53 +39,49 @@ export const GET_GITHUB_INFO = gql`
   }
 `;
 
+const Topics = (props: any) => {
 
-const Topics = () => {
+  const { topicListDataSource, reposDataSource } = props;
 
-  const [userName, updateUserName] = useState("ezeed");
-  const [topicFilterKeyword, updateTopicFilterKeyword] = useState("");
+  const [topicFilterKeyword, updateTopicFilterKeyword] = useState();
+  const [topicListData, updateTopicListData] = useState(topicListDataSource);
+
+  const [selectedTopic, updateSelectedTopic] = useState();
+  const [repos, updateRepos] = useState([]);
+
+  useEffect(() => {
+    const topicFiltered = getTopicsByKeyword(topicListDataSource, topicFilterKeyword);
+    updateTopicListData(topicFiltered);
+    console.log(topicListDataSource);
+  }, [topicFilterKeyword, topicListDataSource])
+
+  useEffect(() => {
+    if (selectedTopic !== '') {
+      updateRepos(getRepoByTopic(reposDataSource, selectedTopic));
+    }
+  }, [selectedTopic, reposDataSource])
 
   return (
     <Fragment>
       <TopicFilters
-        userName={userName}
         topicFilterKeyword={topicFilterKeyword}
-        updateUserName={updateUserName}
         updateTopicFilterKeyword={updateTopicFilterKeyword}
       />
-      <Query variables={{ login: userName, first: 100 }} query={GET_GITHUB_INFO}>
-        {
-          (response: any) => {
-            if (response.loading) return <progress className="progress is-small is-dark" max="100"></progress>
-            if (response.error) return "Error" // TODO: Handle error properly
-            return <div className="container is-fluid">
-              <TopicList topics={[]} />
-            </div>
-          }
-        }
-      </Query>
+      <TopicList topics={topicListData} handleSelectTopic={updateSelectedTopic} />
+      <ReposList repos={repos} />
     </Fragment>
   );
 }
 
-export default Topics;
-
-/*
-function TopicsList({ githubInfo, topicFilterKeyword }: any) {
-  const filteredTopicList = useMemo(() => {
-    const starredRepos = githubInfo.user.starredRepositories.nodes || [];
-    const topicListSource = new Set(
-      starredRepos.flatMap((currentRepo: any) => currentRepo.repositoryTopics.nodes.map((current: any) => current.topic.name))
-    );
-    return Array.from(topicListSource)
-      .filter((topic) => String(topic)
-        .includes(topicFilterKeyword))
-      .sort();
-  }, [githubInfo, topicFilterKeyword])
-  return (
-    <>
-      {(filteredTopicList) && <Tag data={filteredTopicList} handleSelectTopic={console.log} />}
-    </>
-  )
-}
-*/
+export default () => (
+  <Query variables={{ login: "ezeed", first: 100 }} query={GET_GITHUB_INFO}>
+    {
+      // TODO: Get the correct Type of the graphql response. <GraphqlQueryControls>
+      (response: any) => {
+        if (response.loading) return <progress className="progress is-small is-dark" max="100"></progress>
+        if (response.error) return "Error" // TODO: Handle error properly
+        return <Topics topicListDataSource={getTopicsList(response.data)} reposDataSource={response.data} />
+      }
+    }
+  </Query>
+)

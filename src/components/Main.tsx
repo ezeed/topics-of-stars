@@ -1,14 +1,17 @@
-import React from "react";
+import React, { Fragment } from "react";
 import NavBar from "./navbar";
-//import Footer from "./footer";
 import Content from "./content";
+
+/* TODO: Implement Footer
+import Footer from "./footer";
+*/
 
 const Main = () => {
   return (
-    <React.Fragment>
+    <Fragment>
       <NavBar />
       <Content />
-    </React.Fragment>
+    </Fragment>
   );
 };
 

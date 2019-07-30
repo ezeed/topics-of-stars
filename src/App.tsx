@@ -1,5 +1,3 @@
-// import logo from "./logo.svg";
-// import "./App.css";
 import "bulma";
 import React from "react";
 import ApolloClient from "apollo-boost";
@@ -13,7 +11,7 @@ const client = new ApolloClient({
   }
 });
 
-function App(props: any) {
+function App() {
   document.title = "Topic of Stars";
   return (
     <ApolloProvider client={client}>

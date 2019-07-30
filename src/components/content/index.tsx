@@ -2,7 +2,7 @@ import React from "react";
 import Topics from "../topics";
 
 /**
- * If the app scale to more views, that logic goes here.
+ * If the app scale in sections, that logic goes here.
  */
 const Content = () => (
   <div className="section">

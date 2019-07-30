@@ -5,7 +5,8 @@
     "ezeed",
     "ghostwhite",
     "interop",
-    "module"
+    "module",
+    "unmount"
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.formatOnSave": true

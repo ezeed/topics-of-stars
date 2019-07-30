@@ -1,23 +1,21 @@
 # Topics of Stars
 
-- [ ] item1
-- [ ] 2
-- [x] 3
-
-## subtitlo
-
-```javascript
-const sum = 
-```
+## Component Diagram
 
 ```mermaid
 classDiagram
 Main --> NavBar
 Main --> Content
+Main --> Footer
 Content --> Topics
 Topics --> TopicsFilters
 TopicsFilters : string topicFilterKeyword
 TopicsFilters : string userName
 TopicsFilters : updateTopicFilterKeyword()
 TopicsFilters : updateUsername()
+Topics --> TopicList
+TopicList : string[] topics
+TopicList --> Tag
+Tag: string topic
+Tag: handleSelectTopic()
 ```
