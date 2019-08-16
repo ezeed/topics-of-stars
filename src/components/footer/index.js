@@ -1,10 +1,10 @@
 import React from "react";
 
 const Footer = () => (
-  <footer className="footer">
+  <footer className="footer footer-stick">
     <div className="content has-text-centered">
       <p>
-        <strong>Topic of Stars</strong> by{" "}
+        Topic of <strong>Stars</strong> by{" "}
         <a href="https://github.com/ezeed">@ezeed</a>.
       </p>
     </div>

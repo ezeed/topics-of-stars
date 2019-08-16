@@ -1,0 +1,29 @@
+query GET_GITHUB_INFO($login: String!, $first: Int) {
+  user(login: $login) {
+    starredRepositories(first: $first) {
+      totalCount
+      nodes {
+        name
+        description
+        homepageUrl
+        url
+        languages(first: 100) {
+          nodes {
+            name
+          }
+        }
+        owner {
+          url
+          login
+        }
+        repositoryTopics(first: $first) {
+          nodes {
+            topic {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}
