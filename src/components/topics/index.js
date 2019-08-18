@@ -5,6 +5,7 @@ import { loader } from "graphql.macro";
 import TopicList from "../topics-list";
 import TopicFilters from "../topics-filters";
 import ReposList from "../repos-list";
+import LandingComponent from "../landing";
 import { getTopicsList, getTopicsByKeyword, getRepoByTopic } from "./utils";
 
 const GET_GITHUB_INFO = loader("./githubInfo.graphql");
@@ -46,6 +47,7 @@ const Topics = ({ topicListDataSource, reposDataSource }) => {
 
 export default function TopicsWithQuery(props) {
   return (
+    (props.username) ? (
     <Query
       variables={{ login: props.username, first: 100 }}
       query={GET_GITHUB_INFO}
@@ -61,6 +63,6 @@ export default function TopicsWithQuery(props) {
           />
         );
       }}
-    </Query>
+    </Query>) : <LandingComponent />
   );
 }

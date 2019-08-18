@@ -14,9 +14,34 @@ code {
 }
 
 .content-stick {
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 12em);
 }
 
 .footer-stick {
   height: 50px;
+  color: honeydew;
+}
+
+.footer-stick strong {
+  color: honeydew;
+}
+
+.footer-stick a {
+  color: #00d1b2;
+}
+
+.footer-stick a:hover {
+  color: aqua;
+}
+
+.footer-stick a:active {
+  color: #00d1b2;
+}
+
+.footer-stick a:visited {
+  color: #00d1b2;
+}
+
+.logo {
+  font-size: 1.5rem;
 }

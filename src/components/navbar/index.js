@@ -1,48 +1,28 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
+
 import { UserContext } from "../../context/user";
+import SearchUser from "../search-user";
 
 const NavBar = () => {
-  const { username, updateUsername } = useContext(UserContext);
-  const [localUsername, setLocalUsername] = useState(username);
-
+  const { username } = useContext(UserContext);
   return (
-    <nav
-      className="navbar is-black"
-      role="navigation"
-      aria-label="main navigation"
-    >
+    <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="https://www.youtube.com/user/Pazos64">
-          <span>
+          <span className="logo">
             Topic of <strong>Stars</strong>
           </span>
         </a>
       </div>
-      <div className="navbar-menu">
-        <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="field has-addons">
-              <div className="control">
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="Username"
-                  value={localUsername}
-                  onChange={event => setLocalUsername(event.target.value)}
-                />
-              </div>
-              <div className="control">
-                <button
-                  onClick={() => updateUsername(localUsername)}
-                  className="button is-primary"
-                >
-                  Search
-                </button>
-              </div>
+      {username && (
+        <div className="navbar-menu">
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <SearchUser size="is-medium" color="is-primary" />
             </div>
           </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };
@@ -62,4 +42,24 @@ export default NavBar;
     </div>
   </div>
 </div>
+
+
+    <div className="control has-addons has-icons-left">
+      <div className="control">
+        <input
+          className="input is-primary is-large"
+          type="text"
+          placeholder="GitHub User"
+        />
+        <span className="icon is-medium is-left">
+          <FontAwesomeIcon icon={faGithub} />
+        </span>
+      </div>
+      <div className="control">
+        <a className="button is-info">
+          <FontAwesomeIcon icon={faSearch} />
+        </a>
+      </div>
+    </div>
+    </div>
 */
