@@ -10,7 +10,12 @@ const SearchUser = ({ size, color }) => {
 
   return (
     <div className="field has-addons">
-      <div className="control has-icons-left">
+      <div
+        className="control has-icons-left"
+        onKeyPress={event =>
+          event.key === "Enter" && updateUsername(localUsername)
+        }
+      >
         <input
           className={`input ${color} ${size}`}
           type="text"
