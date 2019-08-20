@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 import { Query } from "react-apollo";
 import { loader } from "graphql.macro";
 
@@ -8,14 +8,15 @@ import ReposList from "../repos-list";
 import LandingComponent from "../landing";
 import Message from "../message";
 import { getTopicsList, getTopicsByKeyword, getRepoByTopic } from "./utils";
+import { TopicContext } from "../../context/topic";
 
 const GET_GITHUB_INFO = loader("./githubInfo.graphql");
 
 const Topics = ({ topicListDataSource, reposDataSource }) => {
   const [topicFilterKeyword, updateTopicFilterKeyword] = useState();
   const [topicListData, updateTopicListData] = useState(topicListDataSource);
-  const [selectedTopic, updateSelectedTopic] = useState();
   const [repos, updateRepos] = useState([]);
+  const { selectedTopic } = useContext(TopicContext);
 
   useEffect(() => {
     const topicFiltered = getTopicsByKeyword(
@@ -37,10 +38,7 @@ const Topics = ({ topicListDataSource, reposDataSource }) => {
         topicFilterKeyword={topicFilterKeyword}
         updateTopicFilterKeyword={updateTopicFilterKeyword}
       />
-      <TopicList
-        topics={topicListData}
-        handleSelectTopic={updateSelectedTopic}
-      />
+      <TopicList topics={topicListData} />
       <ReposList repos={repos} />
     </Fragment>
   );

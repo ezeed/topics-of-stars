@@ -2,15 +2,11 @@ import React from "react";
 
 import Tag from "../tag";
 
-const TopicsList = ({ topics, handleSelectTopic }) => (
+const TopicsList = ({ topics }) => (
   <div className="container is-fluid">
     <div className="field is-grouped is-grouped-multiline">
       {topics.map(currentTopic => (
-        <Tag
-          key={currentTopic}
-          topic={currentTopic}
-          handleSelectTopic={handleSelectTopic}
-        />
+        <Tag key={currentTopic} topic={currentTopic} />
       ))}
     </div>
   </div>

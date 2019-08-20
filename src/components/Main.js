@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import NavBar from "./navbar";
 import Content from "./content";
 import { UserContextProvider } from "../context/user";
+import { TopicContextProvider } from "../context/topic";
 import Footer from "./footer";
 
 const Main = () => {
@@ -9,7 +10,9 @@ const Main = () => {
     <UserContextProvider>
       <Fragment>
         <NavBar />
-        <Content />
+        <TopicContextProvider>
+          <Content />
+        </TopicContextProvider>
         <Footer />
       </Fragment>
     </UserContextProvider>

@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./tag.css";
+import { TopicContext } from "../../context/topic";
 
-const Tag = props => {
-  const selectTopicEvent = () => props.handleSelectTopic(props.topic);
+const Tag = ({ topic }) => {
+  const { selectedTopic, updateSelectedTopic } = useContext(TopicContext);
   return (
-    <div key={props.topic} className="control">
+    <div key={topic} className="control">
       <div className="tags has-addons">
-        <span className="tag is-dark" onClick={selectTopicEvent}>
-          {props.topic}
+        <span
+          className={`tag is-medium ${
+            selectedTopic === topic ? "is-primary color-is-black" : "is-dark"
+          }`}
+          onClick={() => updateSelectedTopic(topic)}
+        >
+          {topic}
         </span>
       </div>
     </div>
