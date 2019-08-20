@@ -6,6 +6,7 @@ import TopicList from "../topics-list";
 import TopicFilters from "../topics-filters";
 import ReposList from "../repos-list";
 import LandingComponent from "../landing";
+import Message from "../message";
 import { getTopicsList, getTopicsByKeyword, getRepoByTopic } from "./utils";
 
 const GET_GITHUB_INFO = loader("./githubInfo.graphql");
@@ -46,8 +47,7 @@ const Topics = ({ topicListDataSource, reposDataSource }) => {
 };
 
 export default function TopicsWithQuery(props) {
-  return (
-    (props.username) ? (
+  return props.username ? (
     <Query
       variables={{ login: props.username, first: 100 }}
       query={GET_GITHUB_INFO}
@@ -55,7 +55,20 @@ export default function TopicsWithQuery(props) {
       {response => {
         if (response.loading)
           return <progress className="progress is-small is-dark" max="100" />;
-        if (response.error) return "Error"; // TODO: Handle error properly
+        if (response.error) {
+          /*TODO: Handle error message properly*/
+          const normalizedError = response.error.message.replace(
+            "GraphQL error: ",
+            ""
+          );
+          return (
+            <Message
+              message={normalizedError}
+              color="is-dark"
+              size="is-large"
+            />
+          ); // TODO: Handle error properly
+        }
         return (
           <Topics
             topicListDataSource={getTopicsList(response.data)}
@@ -63,6 +76,8 @@ export default function TopicsWithQuery(props) {
           />
         );
       }}
-    </Query>) : <LandingComponent />
+    </Query>
+  ) : (
+    <LandingComponent />
   );
 }

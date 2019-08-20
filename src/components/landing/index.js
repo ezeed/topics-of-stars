@@ -5,7 +5,7 @@ const LandingComponent = () => (
   <section className="hero is-primary">
     <div className="hero-body">
       <div className="container has-text-centered">
-        <h1 className="title">Find your Fav repos by Topic</h1>
+        <h1 className="title">Find your starred repos by Topic</h1>
         <h2 className="subtitle">Search by GitHub User</h2>
         <br />
       </div>
