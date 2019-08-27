@@ -49,3 +49,14 @@ code {
 .color-is-black {
   color: black !important;
 }
+
+.collapsible {
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  height: auto;
+  max-height: 101em;
+  box-shadow: 0px -25px 25px -25px inset;
+}
+.collapsible.collapsed {
+  max-height: 6em;
+}
