@@ -7,12 +7,14 @@ import TopicFilters from "../topics-filters";
 import ReposList from "../repos-list";
 import LandingComponent from "../landing";
 import Message from "../message";
+import UserInfoHeader from "../user-info-header";
+
 import { getTopicsList, getTopicsByKeyword, getRepoByTopic } from "./utils";
 import { TopicContext } from "../../context/topic";
 
 const GET_GITHUB_INFO = loader("./githubInfo.graphql");
 
-const Topics = ({ topicListDataSource, reposDataSource }) => {
+const Topics = ({ topicListDataSource, reposDataSource, userData }) => {
   const [topicFilterKeyword, updateTopicFilterKeyword] = useState();
   const [topicListData, updateTopicListData] = useState(topicListDataSource);
   const [repos, updateRepos] = useState([]);
@@ -34,6 +36,7 @@ const Topics = ({ topicListDataSource, reposDataSource }) => {
 
   return (
     <Fragment>
+      <UserInfoHeader userData={userData} />
       <TopicFilters
         topicFilterKeyword={topicFilterKeyword}
         updateTopicFilterKeyword={updateTopicFilterKeyword}
@@ -65,12 +68,22 @@ export default function TopicsWithQuery(props) {
               color="is-dark"
               size="is-large"
             />
-          ); // TODO: Handle error properly
+          );
         }
         return (
           <Topics
             topicListDataSource={getTopicsList(response.data)}
             reposDataSource={response.data}
+            userData={{
+              url: response.data.user.url,
+              name: response.data.user.name,
+              avatarUrl: response.data.user.avatarUrl,
+              followers: response.data.user.followers.totalCount,
+              following: response.data.user.following.totalCount,
+              repositories: response.data.user.repositories.totalCount,
+              starredRepositories:
+                response.data.user.starredRepositories.totalCount
+            }}
           />
         );
       }}

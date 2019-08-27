@@ -8,7 +8,7 @@ const Content = () => {
   return (
     <div className="section content-stick">
       {username && (
-        <div className="is-hidden-tablet">
+        <div className="level is-hidden-desktop">
           <SearchUser />
         </div>
       )}
