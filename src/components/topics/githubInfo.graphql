@@ -1,5 +1,17 @@
 query GET_GITHUB_INFO($login: String!, $first: Int) {
   user(login: $login) {
+    url
+    name
+    avatarUrl
+    followers(first: $first) {
+      totalCount
+    }
+    following(first: $first) {
+      totalCount
+    }
+    repositories(first: $first) {
+      totalCount
+    }
     starredRepositories(first: $first) {
       totalCount
       nodes {
@@ -7,7 +19,7 @@ query GET_GITHUB_INFO($login: String!, $first: Int) {
         description
         homepageUrl
         url
-        languages(first: 100) {
+        languages(first: $first) {
           nodes {
             name
           }

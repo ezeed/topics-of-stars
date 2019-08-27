@@ -55,8 +55,18 @@ code {
   transition: max-height 0.4s ease-out;
   height: auto;
   max-height: 101em;
-  box-shadow: 0px -25px 25px -25px inset;
 }
 .collapsible.collapsed {
   max-height: 6em;
+  box-shadow: 0px -25px 25px -25px inset;
+}
+
+.avatar {
+  box-shadow: 0px 0px 0px 1px #363636;
+  transition: box-shadow 0.4s ease-out;
+  margin: 0.5em; /* Increased margin since the box-shado expands outside the element, like outline */
+}
+
+.avatar:hover {
+  box-shadow: 0px 0px 0px 8px #00d1b2;
 }
