@@ -31,6 +31,8 @@ const Topics = ({ topicListDataSource, reposDataSource, userData }) => {
   useEffect(() => {
     if (selectedTopic !== "") {
       updateRepos(getRepoByTopic(reposDataSource, selectedTopic));
+    } else {
+      updateRepos([]);
     }
   }, [selectedTopic, reposDataSource]);
 
