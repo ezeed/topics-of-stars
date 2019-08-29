@@ -15,7 +15,10 @@ import { TopicContext } from "../../context/topic";
 const GET_GITHUB_INFO = loader("./githubInfo.graphql");
 
 const Topics = ({ topicListDataSource, reposDataSource, userData }) => {
-  const [topicFilterKeyword, updateTopicFilterKeyword] = useState();
+  // Default empty string prevent:
+  // Warning: A component is changing an uncontrolled input of type text to be controlled.
+  const [topicFilterKeyword, updateTopicFilterKeyword] = useState("");
+
   const [topicListData, updateTopicListData] = useState(topicListDataSource);
   const [repos, updateRepos] = useState([]);
   const { selectedTopic } = useContext(TopicContext);
@@ -39,10 +42,12 @@ const Topics = ({ topicListDataSource, reposDataSource, userData }) => {
   return (
     <Fragment>
       <UserInfoHeader userData={userData} />
-      <TopicFilters
-        topicFilterKeyword={topicFilterKeyword}
-        updateTopicFilterKeyword={updateTopicFilterKeyword}
-      />
+      {userData.starredRepositories > 0 && (
+        <TopicFilters
+          topicFilterKeyword={topicFilterKeyword}
+          updateTopicFilterKeyword={updateTopicFilterKeyword}
+        />
+      )}
       <TopicList topics={topicListData} />
       <ReposList repos={repos} />
     </Fragment>
