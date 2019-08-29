@@ -1,4 +1,5 @@
 import React from "react";
+import Img from "react-image";
 
 // url
 const UserInfoHeader = ({ userData }) => {
@@ -16,7 +17,12 @@ const UserInfoHeader = ({ userData }) => {
       <div className="level-item has-text-centered is-hidden-desktop">
         <div>
           <a href={url} target="_blank" rel="noopener noreferrer">
-            <img
+            <Img
+              loader={
+                <button className="button is-text is-loading is-rounded">
+                  Loading
+                </button>
+              }
               className="avatar"
               src={avatarUrl}
               alt={name}
@@ -41,8 +47,13 @@ const UserInfoHeader = ({ userData }) => {
       <div className="level-item has-text-centered is-hidden-touch">
         <div>
           <a href={url} target="_blank" rel="noopener noreferrer">
-            <img
+            <Img
               className="avatar"
+              loader={
+                <button className="button is-text is-loading is-rounded">
+                  Loading
+                </button>
+              }
               src={avatarUrl}
               alt={name}
               title={name}
