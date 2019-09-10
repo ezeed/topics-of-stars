@@ -4,8 +4,22 @@ const Footer = () => (
   <footer className="footer has-background-dark footer-stick">
     <div className="content has-text-centered">
       <p>
-        Topic of <strong>Stars</strong> by{" "}
-        <a href="https://github.com/ezeed">@ezeed</a>.
+        <a
+          href="https://github.com/ezeed/topics-of-stars"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Topic of <strong className="has-text-primary">Stars</strong>
+        </a>{" "}
+        by{" "}
+        <a
+          href="https://github.com/ezeed"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          @ezeed
+        </a>
+        .
       </p>
     </div>
   </footer>
