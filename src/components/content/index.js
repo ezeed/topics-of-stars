@@ -6,7 +6,9 @@ import SearchUser from "../search-user";
 const Content = () => {
   const { username } = useContext(UserContext);
   return (
-    <div className="section content-stick">
+    <div
+      className={`section content-stick ${!username ? "background-image" : ""}`}
+    >
       {username && (
         <div className="level is-hidden-desktop">
           <SearchUser />
