@@ -2,19 +2,20 @@ import React from "react";
 import SearchUser from "../search-user";
 
 const LandingComponent = () => (
-  <section className="hero is-primary">
-    <div className="hero-body">
-      <div className="container has-text-centered">
-        <h1 className="title">Find your starred repos by Topic</h1>
-        <h2 className="subtitle">Search by GitHub User</h2>
-        <br />
+  <section className="landing-element">
+    <div className="columns is-centered">
+      <div className="column is-half is-offset-one-fifths">
+        <h1>DUDE! Where is my repo?</h1>
+        <h2>
+          If you have a lot of starred repos in github and you're watching that
+          CSS lib and don't remember the name, let's try search by topic (or
+          tag)
+        </h2>
       </div>
-      <div className="columns">
-        <div className="column" />
-        <div className="column is-one-quarter">
-          <SearchUser />
-        </div>
-        <div className="column" />
+    </div>
+    <div className="columns is-centered">
+      <div className="column is-half is-offset-one-fifths">
+        <SearchUser />
       </div>
     </div>
   </section>

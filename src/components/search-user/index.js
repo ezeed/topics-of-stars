@@ -9,31 +9,33 @@ const SearchUser = ({ size, color }) => {
   const [localUsername, setLocalUsername] = useState(username);
 
   return (
-    <div className="field has-addons">
-      <div
-        className="control has-icons-left"
-        onKeyPress={event =>
-          event.key === "Enter" && updateUsername(localUsername)
-        }
-      >
-        <input
-          className={`input ${color} ${size}`}
-          type="text"
-          placeholder="GitHub User"
-          value={localUsername}
-          onChange={event => setLocalUsername(event.target.value)}
-        />
-        <span className="icon is-medium is-left">
-          <FontAwesomeIcon icon={faGithub} />
-        </span>
-      </div>
-      <div className="control">
-        <button
-          onClick={() => updateUsername(localUsername)}
-          className={`button ${color} ${size}`}
+    <div className="centered">
+      <div className="field has-addons">
+        <div
+          className="control has-icons-left"
+          onKeyPress={event =>
+            event.key === "Enter" && updateUsername(localUsername)
+          }
         >
-          <FontAwesomeIcon icon={faSearch} />
-        </button>
+          <input
+            className={`input ${color} ${size}`}
+            type="text"
+            placeholder="GitHub User"
+            value={localUsername}
+            onChange={event => setLocalUsername(event.target.value)}
+          />
+          <span className="icon is-medium is-left">
+            <FontAwesomeIcon icon={faGithub} />
+          </span>
+        </div>
+        <div className="control">
+          <button
+            onClick={() => updateUsername(localUsername)}
+            className={`button ${color} ${size}`}
+          >
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
+        </div>
       </div>
     </div>
   );
