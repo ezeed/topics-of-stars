@@ -1,7 +1,7 @@
 import "bulma";
 import React from "react";
 import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
+import { ApolloProvider } from "@apollo/react-hooks";
 import Main from "./components/Main";
 const { REACT_APP_GITHUB_TOKEN } = process.env;
 const client = new ApolloClient({
