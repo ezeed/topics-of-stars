@@ -18,13 +18,13 @@
     "bulma": "^0.8.2",
     "graphql": "^15.0.0",
     "graphql.macro": "^1.4.2",
-    "node-sass": "^4.14.1",
+    "node-sass": "^6.0.1",
     "react": "^16.13.1",
     "react-apollo": "^3.1.5",
     "react-dom": "^16.13.1",
     "react-image": "^2.4.0",
     "react-json-tree": "^0.11.2",
-    "react-scripts": "^3.4.1",
+    "react-scripts": "^5.0.0",
     "typescript": "3.8.3"
   },
   "scripts": {
