@@ -16,7 +16,7 @@
     "@types/react-json-tree": "^0.6.11",
     "apollo-boost": "^0.4.7",
     "bulma": "^0.8.2",
-    "graphql": "^15.0.0",
+    "graphql": "^15.6.0",
     "graphql.macro": "^1.4.2",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
